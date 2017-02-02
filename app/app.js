@@ -21,4 +21,5 @@ document.body.appendChild(renderer.view);
 AnimationStore.addChangeListener(() => TWEEN.update());
 
 renderer.addRenderable(app);
+
 renderer.start();
