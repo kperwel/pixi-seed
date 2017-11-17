@@ -15,7 +15,7 @@ export default class Renderer extends WebGLRenderer {
   constructor(options) {
     super(options);
 
-    window.addEventListener("resize", this.resizeHandler.bind(this));
+    window.addEventListener("resize", this.resizeHandler);
 
     this.resizeHandler();
   }
@@ -24,10 +24,10 @@ export default class Renderer extends WebGLRenderer {
    * Dispatch resize
    * @return {null}
    */
-  resizeHandler() {
+  resizeHandler = () => {
     Store.dispatch({ type: "RENDERER.RESIZE" });
     this.resize(window.innerWidth, window.innerHeight);
-  }
+  };
 
   /**
    * Start the animation loop
@@ -35,7 +35,7 @@ export default class Renderer extends WebGLRenderer {
    */
   start() {
     this.active = true;
-    window.requestAnimationFrame(this.animate.bind(this));
+    window.requestAnimationFrame(this.animate);
   }
 
   /**
@@ -50,14 +50,14 @@ export default class Renderer extends WebGLRenderer {
    * Main animation loop, updates animation store
    * @return {null}
    */
-  animate() {
+  animate = () => {
     this.renderRenderables();
 
     if (this.active) {
-      window.requestAnimationFrame(this.animate.bind(this));
+      window.requestAnimationFrame(this.animate);
       Store.dispatch({ type: "ANIMATION.TICK" });
     }
-  }
+  };
 
   /**
    * Add a renderable object to the animation loop

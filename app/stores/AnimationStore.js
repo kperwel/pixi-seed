@@ -1,11 +1,11 @@
-const defaultState = {
+const initialState = {
   tick: 1,
   previousTick: 0,
   startTime: window.performance.now(),
   currentTime: window.performance.now()
 };
 
-export default (state = defaultState, action = {}) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     case "ANIMATION.TICK":
       return {
