@@ -37,18 +37,18 @@ export default class LoaderScreen extends Container {
   start(assets = []) {
     loader.add(assets);
     loader.load();
-    loader.onProgress.add(this.onUpdate.bind(this));
-    loader.onComplete.add(this.onComplete.bind(this));
+    loader.onProgress.add(this.onUpdate);
+    loader.onComplete.add(this.onComplete);
   }
 
-  onUpdate(ldr) {
+  onUpdate = ldr => {
     this.progress = ldr.progress / 100;
-  }
+  };
 
-  onComplete() {
+  onComplete = () => {
     this.done();
     this.unsubscribe();
-  }
+  };
 
   onLoaded(callback = () => {}) {
     this.done = callback;
